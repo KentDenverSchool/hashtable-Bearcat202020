@@ -8,6 +8,8 @@ class TestHash(unittest.TestCase):
 
         hash = HashTable(8000)
         hash.put("hello", "there")
+        hash.put("test", "two")
+        hash.put("another", "test")
         self.assertEqual(hash.get("hello"), "there")
 
     def test_contains(self):
@@ -26,6 +28,10 @@ class TestHash(unittest.TestCase):
         #no error when removing with empty
         hash.remove("nothing")
 
+    def test_hashCode(self):
+
+        hash = HashTable(8000)
+        self.assertEqual(hash.hashCode("hello"), 1881)
 
 if __name__ == "__main__":
     unittest.main()

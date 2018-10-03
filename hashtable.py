@@ -16,6 +16,9 @@ class HashTable:
         hashedKey = myHash(key)
         return self.arr[hashedKey]
 
+    def hashCode(self, key):
+        return myHash(key)
+
     def contains(self, key):
         hashedKey = myHash(key)
         return self.arr[hashedKey] != None
