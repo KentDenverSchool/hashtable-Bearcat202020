@@ -33,5 +33,7 @@ class TestHash(unittest.TestCase):
         hash = HashTable(8000)
         self.assertEqual(hash.hashCode("hello"), 1881)
 
+
+
 if __name__ == "__main__":
     unittest.main()

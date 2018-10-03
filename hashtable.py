@@ -57,7 +57,7 @@ Question 3:
 '''
 
 def myHash(obj):
-    hash = int(obj, 36) * 991
+    hash = int(obj, 36) * 3803
     strHash = str(hash)
     bigPrime = 7949
     otherBigPrime = 4801
@@ -65,14 +65,39 @@ def myHash(obj):
 
     for i in range(len(strHash)):
         if(i%3 == 0):
-            num += int(strHash[i]) * otherBigPrime % bigPrime
+            num += int(strHash[i]) * otherBigPrime % bigPrime * i
         elif (i%3 == 1):
-            num -= int(strHash[i]) * otherBigPrime % bigPrime
+            num -= int(strHash[i]) * otherBigPrime % bigPrime * i
         else:
-            num *= int(strHash[i]) * otherBigPrime % bigPrime
+            num *= int(strHash[i]) * otherBigPrime % bigPrime * i
+
+
     return int(abs(num)) % 7963
 
 
 if __name__ == "__main__":
     #check other doc for testing
-    pass
+    testArr = []
+    i = 0
+    firstLetter = 65
+    secondLetter = 65
+    thirdLetter = 65
+    num = 0
+    amountOfIterations = 1000
+    while i < amountOfIterations:
+        if thirdLetter >= 90:
+            thirdLetter = 65
+            secondLetter += 1
+        elif secondLetter >= 90:
+            secondLetter = 65
+            firstLetter += 1
+        else:
+            thirdLetter += 1
+
+        testStr = chr(firstLetter) + chr(secondLetter) + chr(thirdLetter)
+
+        if myHash(testStr) in testArr:
+            num += 1
+        testArr.append(myHash(testStr))
+        i+=1
+    print("percent of collisions is:", num/amountOfIterations * 100, "%")
